@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="font-family: Arial, Helvetica, sans-serif;">
+
+    <div style="border: 1px solid black; padding: 10px; margin:200px 450px;">
+        <h1>selamın aleyküm, <span style="text-decoration: underline;" id="name"></span> adlı şahıs.</h1>
+        <h1>saat şuanda : <span style="text-decoration: underline;" id="clock"></span></h1>
+        <h1>günlerden : <span style="text-decoration: underline;" id="day"></span></h1>
+        <h1>başarılar diler, kodluyoruz ekibine teşekkür ederim.</h1>
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var name = prompt("Lütfen adınızı giriniz.","");
+            var day = getDay();
+            document.getElementById('day').innerHTML = day;
+            document.getElementById('name').innerHTML = name;
+
+            clock();
+
+        });
+
+        function getDay(){
+            var date = new Date();
+            var day = date.getDay();
+            var dayString = "";
+            switch (day) {
+                case 1:
+                    dayString = "Pazartesi";
+                    break;
+                case 2:
+                    dayString = "Salı";
+                    break;
+                case 3:
+                    dayString = "Çarşamba";
+                    break;
+                case 4:
+                    dayString = "Perşembe";
+                    break;
+                case 5:
+                    dayString = "Cuma";
+                    break;
+                case 6:
+                    dayString = "Cumartesi";
+                    break;
+                case 7:
+                    dayString = "Pazar";
+                    break;
+            }
+            return dayString;
+        }
+
+        function belowZeroCheck(value){
+            let result = "";
+            if(value < 10){
+                result = `0${value}`;
+            }else{
+                result = `${value}`;
+            }
+            return result;
+        }
+
+        function clock(){
+
+            var date = new Date();
+
+            var hour = date.getHours();
+            var minute = date.getMinutes();
+            var second = date.getSeconds();
+
+            var result = `${belowZeroCheck(hour)} : ${belowZeroCheck(minute)} : ${belowZeroCheck(second)}`;
+
+            setInterval('clock()', 1000);
+            // console.log(result);
+            document.getElementById('clock').innerHTML = result;
+        }
+
+    </script>
+</body>
+
+</html>
